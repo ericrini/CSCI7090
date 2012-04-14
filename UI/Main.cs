@@ -30,5 +30,11 @@ namespace UI
                 ctlData.DataSource = loader.Loader.Data;
             }
         }
+
+        private void ctlInterpolate_Click(object sender, EventArgs e)
+        {
+            InterpolatorForm interpolator = new InterpolatorForm();
+            interpolator.ShowDialog();
+        }
     }
 }

@@ -76,6 +76,7 @@
             this.ctlInterpolate.TabIndex = 0;
             this.ctlInterpolate.Text = "Interpolate";
             this.ctlInterpolate.UseVisualStyleBackColor = true;
+            this.ctlInterpolate.Click += new System.EventHandler(this.ctlInterpolate_Click);
             // 
             // ctlData
             // 
@@ -95,7 +96,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ctlData)).EndInit();
             this.ResumeLayout(false);

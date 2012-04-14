@@ -10,3 +10,4 @@ C:\Projects\GIS\UI\obj\x86\Debug\UI.exe
 C:\Projects\GIS\UI\obj\x86\Debug\UI.pdb
 C:\Projects\GIS\UI\obj\x86\Debug\UI.LoadForm.resources
 C:\Projects\GIS\UI\obj\x86\Debug\UI.MainForm.resources
+C:\Projects\GIS\UI\obj\x86\Debug\UI.InterpolatorForm.resources
