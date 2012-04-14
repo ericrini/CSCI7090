@@ -26,9 +26,6 @@ namespace UI
             // Time Domains
             ctlDomain.DataSource = Enum.GetValues(typeof(Time.TimeDomain));
             ctlDomain.SelectedIndex = 0;
-
-            // Avaliable Columns
-            ctlColAvailable.DataSource = Enum.GetValues(typeof(Loader.Columns));
         }
 
         private void ctlPath_Click(object sender, EventArgs e)
@@ -77,6 +74,36 @@ namespace UI
             catch (Exception x)
             {
                 MessageBox.Show(x.Message);
+            }
+        }
+
+        private void ctlDomain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Hehe dirty apps.
+            int[][] data = new int[5][];
+            data[0] = new int[] { 1, 2, 3, 4 };
+            data[1] = new int[] { 1, 2, 3, 4, 5 };
+            data[2] = new int[] { 1, 2, 3, 4, 5, 6 };
+            data[3] = new int[] { 1, 2, 3, 4, 5, 7 };
+            data[4] = new int[] { 1, 2, 3, 4, 5, 7, 8 };
+
+            ctlColAvailable.Items.Clear();
+
+            // Set the avaliable columns.
+            int timeDomain = ctlDomain.SelectedIndex;
+            int[] validColumns = data[timeDomain];
+
+            //Remove columns not part of this time domain.
+            foreach (Loader.Columns col in Enum.GetValues(typeof(Loader.Columns)))
+            {
+                // Loop through the valid columns and see if this column is there.
+                for (int j = 0; j < validColumns.Length; j++)
+                {
+                    if ((int)col == validColumns[j])
+                    {
+                        ctlColAvailable.Items.Add(col);
+                    }
+                }
             }
         }
     }

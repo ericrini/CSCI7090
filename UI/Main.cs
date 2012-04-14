@@ -23,8 +23,8 @@ namespace UI
 
         private void ctlLoader_Click(object sender, EventArgs e)
         {
-            Form loader = new frmLoader().Show();
-            loader.Loader.Data;
+            Form loader = new frmLoader();
+            loader.Show();
         }
     }
 }

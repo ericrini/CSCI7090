@@ -41,6 +41,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ctlDelimiter = new System.Windows.Forms.TextBox();
             this.ctlSkip = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ctlPath
@@ -65,15 +71,16 @@
             // ctlDomain
             // 
             this.ctlDomain.FormattingEnabled = true;
-            this.ctlDomain.Location = new System.Drawing.Point(97, 59);
+            this.ctlDomain.Location = new System.Drawing.Point(81, 13);
             this.ctlDomain.Name = "ctlDomain";
-            this.ctlDomain.Size = new System.Drawing.Size(166, 21);
+            this.ctlDomain.Size = new System.Drawing.Size(174, 21);
             this.ctlDomain.TabIndex = 2;
+            this.ctlDomain.SelectedIndexChanged += new System.EventHandler(this.ctlDomain_SelectedIndexChanged);
             // 
             // ctlColAvailable
             // 
             this.ctlColAvailable.FormattingEnabled = true;
-            this.ctlColAvailable.Location = new System.Drawing.Point(14, 104);
+            this.ctlColAvailable.Location = new System.Drawing.Point(9, 53);
             this.ctlColAvailable.Name = "ctlColAvailable";
             this.ctlColAvailable.Size = new System.Drawing.Size(120, 95);
             this.ctlColAvailable.TabIndex = 3;
@@ -81,14 +88,14 @@
             // ctlColSelected
             // 
             this.ctlColSelected.FormattingEnabled = true;
-            this.ctlColSelected.Location = new System.Drawing.Point(140, 104);
+            this.ctlColSelected.Location = new System.Drawing.Point(135, 53);
             this.ctlColSelected.Name = "ctlColSelected";
             this.ctlColSelected.Size = new System.Drawing.Size(120, 95);
             this.ctlColSelected.TabIndex = 4;
             // 
             // ctlAddCol
             // 
-            this.ctlAddCol.Location = new System.Drawing.Point(14, 206);
+            this.ctlAddCol.Location = new System.Drawing.Point(9, 152);
             this.ctlAddCol.Name = "ctlAddCol";
             this.ctlAddCol.Size = new System.Drawing.Size(120, 23);
             this.ctlAddCol.TabIndex = 5;
@@ -98,7 +105,7 @@
             // 
             // ctlRemoveCol
             // 
-            this.ctlRemoveCol.Location = new System.Drawing.Point(140, 206);
+            this.ctlRemoveCol.Location = new System.Drawing.Point(135, 152);
             this.ctlRemoveCol.Name = "ctlRemoveCol";
             this.ctlRemoveCol.Size = new System.Drawing.Size(120, 23);
             this.ctlRemoveCol.TabIndex = 6;
@@ -108,9 +115,9 @@
             // 
             // ctlBegin
             // 
-            this.ctlBegin.Location = new System.Drawing.Point(15, 340);
+            this.ctlBegin.Location = new System.Drawing.Point(13, 299);
             this.ctlBegin.Name = "ctlBegin";
-            this.ctlBegin.Size = new System.Drawing.Size(74, 23);
+            this.ctlBegin.Size = new System.Drawing.Size(266, 23);
             this.ctlBegin.TabIndex = 7;
             this.ctlBegin.Text = "Begin Loading";
             this.ctlBegin.UseVisualStyleBackColor = true;
@@ -119,7 +126,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 62);
+            this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 8;
@@ -128,7 +135,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 88);
+            this.label2.Location = new System.Drawing.Point(6, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 13);
             this.label2.TabIndex = 9;
@@ -137,49 +144,94 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(137, 88);
+            this.label3.Location = new System.Drawing.Point(135, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 13);
+            this.label3.Size = new System.Drawing.Size(98, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Input Columns";
+            this.label3.Text = "Input Column Order";
             // 
             // ctlDelimiter
             // 
-            this.ctlDelimiter.Location = new System.Drawing.Point(15, 236);
+            this.ctlDelimiter.Location = new System.Drawing.Point(112, 33);
             this.ctlDelimiter.Name = "ctlDelimiter";
-            this.ctlDelimiter.Size = new System.Drawing.Size(100, 20);
+            this.ctlDelimiter.Size = new System.Drawing.Size(29, 20);
             this.ctlDelimiter.TabIndex = 11;
             this.ctlDelimiter.Text = " ";
             // 
             // ctlSkip
             // 
-            this.ctlSkip.Location = new System.Drawing.Point(15, 263);
+            this.ctlSkip.Location = new System.Drawing.Point(112, 13);
             this.ctlSkip.Name = "ctlSkip";
-            this.ctlSkip.Size = new System.Drawing.Size(100, 20);
+            this.ctlSkip.Size = new System.Drawing.Size(29, 20);
             this.ctlSkip.TabIndex = 12;
             this.ctlSkip.Text = "1";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.ctlDelimiter);
+            this.groupBox1.Controls.Add(this.ctlSkip);
+            this.groupBox1.Location = new System.Drawing.Point(129, 230);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(150, 63);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Options";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Column Delimiter";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Skip Rows";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.ctlDomain);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.ctlColAvailable);
+            this.groupBox2.Controls.Add(this.ctlAddCol);
+            this.groupBox2.Controls.Add(this.ctlColSelected);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.ctlRemoveCol);
+            this.groupBox2.Location = new System.Drawing.Point(13, 41);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(266, 183);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Data Format";
             // 
             // frmLoader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(789, 400);
-            this.Controls.Add(this.ctlSkip);
-            this.Controls.Add(this.ctlDelimiter);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(294, 339);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ctlBegin);
-            this.Controls.Add(this.ctlRemoveCol);
-            this.Controls.Add(this.ctlAddCol);
-            this.Controls.Add(this.ctlColSelected);
-            this.Controls.Add(this.ctlColAvailable);
-            this.Controls.Add(this.ctlDomain);
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.ctlPath);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmLoader";
             this.Text = "Load File";
             this.Load += new System.EventHandler(this.lblFilePath_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +252,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox ctlDelimiter;
         private System.Windows.Forms.TextBox ctlSkip;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

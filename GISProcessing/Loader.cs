@@ -15,6 +15,7 @@ namespace GISProcessing
 
         public List<Measurement> Data;
         public enum Columns { ID = 1, X = 2, Y = 3, Value = 4, Year = 5, Quarter = 6, Month = 7, Day = 8 }
+        
 
         public Loader(string file, string delimiter, Columns[] columns, Time.TimeDomain domain, int skip)
         {
