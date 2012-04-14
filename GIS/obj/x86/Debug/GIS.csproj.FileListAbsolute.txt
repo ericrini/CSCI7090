@@ -1,0 +1,17 @@
+C:\Projects\GIS\GIS\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Projects\GIS\GIS\obj\x86\Debug\Loader.baml
+C:\Projects\GIS\GIS\obj\x86\Debug\MainWindow.baml
+C:\Projects\GIS\GIS\obj\x86\Debug\Loader.g.cs
+C:\Projects\GIS\GIS\obj\x86\Debug\MainWindow.g.cs
+C:\Projects\GIS\GIS\obj\x86\Debug\App.g.cs
+C:\Projects\GIS\GIS\obj\x86\Debug\GIS_MarkupCompile.cache
+C:\Projects\GIS\GIS\obj\x86\Debug\GIS.g.resources
+C:\Projects\GIS\GIS\obj\x86\Debug\GIS.Properties.Resources.resources
+C:\Projects\GIS\GIS\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Projects\GIS\GIS\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Projects\GIS\GIS\bin\Debug\GIS.exe
+C:\Projects\GIS\GIS\bin\Debug\GIS.pdb
+C:\Projects\GIS\GIS\obj\x86\Debug\GIS.exe
+C:\Projects\GIS\GIS\obj\x86\Debug\GIS.pdb
+C:\Projects\GIS\GIS\bin\Debug\GISProcessing.dll
+C:\Projects\GIS\GIS\bin\Debug\GISProcessing.pdb

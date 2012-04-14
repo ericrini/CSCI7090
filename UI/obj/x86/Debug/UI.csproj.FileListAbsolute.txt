@@ -1,0 +1,12 @@
+C:\Projects\GIS\UI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Projects\GIS\UI\obj\x86\Debug\UI.frmLoader.resources
+C:\Projects\GIS\UI\obj\x86\Debug\UI.frmMain.resources
+C:\Projects\GIS\UI\obj\x86\Debug\UI.Properties.Resources.resources
+C:\Projects\GIS\UI\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Projects\GIS\UI\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Projects\GIS\UI\bin\Debug\UI.exe
+C:\Projects\GIS\UI\bin\Debug\UI.pdb
+C:\Projects\GIS\UI\bin\Debug\GISProcessing.dll
+C:\Projects\GIS\UI\bin\Debug\GISProcessing.pdb
+C:\Projects\GIS\UI\obj\x86\Debug\UI.exe
+C:\Projects\GIS\UI\obj\x86\Debug\UI.pdb
