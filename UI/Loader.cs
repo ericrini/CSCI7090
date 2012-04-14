@@ -12,11 +12,11 @@ using GISProcessing.Models;
 
 namespace UI
 {
-    public partial class frmLoader : Form
+    public partial class LoadForm : Form
     {
         public Loader Loader;
 
-        public frmLoader()
+        public LoadForm()
         {
             InitializeComponent();
         }

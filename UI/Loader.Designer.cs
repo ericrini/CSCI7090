@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class frmLoader
+    partial class LoadForm
     {
         /// <summary>
         /// Required designer variable.
@@ -214,7 +214,7 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data Format";
             // 
-            // frmLoader
+            // LoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -224,8 +224,9 @@
             this.Controls.Add(this.ctlBegin);
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.ctlPath);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmLoader";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Name = "LoadForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Load File";
             this.Load += new System.EventHandler(this.lblFilePath_Load);
             this.groupBox1.ResumeLayout(false);

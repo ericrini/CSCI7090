@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace GISProcessing.Models
 {
@@ -30,6 +31,20 @@ namespace GISProcessing.Models
             {
                 this.Value = new int[3];
             }
+        }
+
+        public string ToString()
+        {
+            StringBuilder b = new StringBuilder();
+            for (int i = 0; i < this.Value.Length; i++)
+            {
+                if (i > 0)
+                {
+                    b.Append(", ");
+                }
+                b.Append(this.Value[i]);
+            }
+            return b.ToString();
         }
     }
 }

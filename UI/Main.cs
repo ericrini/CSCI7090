@@ -12,19 +12,23 @@ using GISProcessing.Models;
 
 namespace UI
 {
-    public partial class frmMain : Form
+    public partial class MainForm : Form
     {
         public List<Measurement> data;
 
-        public frmMain()
+        public MainForm()
         {
             InitializeComponent();
         }
 
         private void ctlLoader_Click(object sender, EventArgs e)
         {
-            Form loader = new frmLoader();
-            loader.Show();
+            LoadForm loader = new LoadForm();
+            loader.ShowDialog();
+            if (loader.Loader != null)
+            {
+                ctlData.DataSource = loader.Loader.Data;
+            }
         }
     }
 }
