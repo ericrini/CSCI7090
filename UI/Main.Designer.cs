@@ -29,90 +29,87 @@
         private void InitializeComponent()
         {
             this.ctlLoader = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.ctlInterpolate = new System.Windows.Forms.Button();
-            this.ctlData = new System.Windows.Forms.DataGridView();
+            this.ctlTabs = new System.Windows.Forms.TabControl();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ctlData)).BeginInit();
             this.SuspendLayout();
             // 
             // ctlLoader
             // 
-            this.ctlLoader.Location = new System.Drawing.Point(6, 19);
+            this.ctlLoader.Location = new System.Drawing.Point(7, 19);
             this.ctlLoader.Name = "ctlLoader";
             this.ctlLoader.Size = new System.Drawing.Size(175, 23);
             this.ctlLoader.TabIndex = 0;
-            this.ctlLoader.Text = "Load File";
+            this.ctlLoader.Text = "Import Data Set";
             this.ctlLoader.UseVisualStyleBackColor = true;
             this.ctlLoader.Click += new System.EventHandler(this.ctlLoader_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Active Data Set";
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.ctlInterpolate);
             this.groupBox1.Controls.Add(this.ctlLoader);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.Location = new System.Drawing.Point(456, 0);
+            this.groupBox1.Location = new System.Drawing.Point(452, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(187, 334);
+            this.groupBox1.Size = new System.Drawing.Size(191, 334);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Toolbox";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(8, 77);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(174, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Export Data Set";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ctlInterpolate
             // 
-            this.ctlInterpolate.Location = new System.Drawing.Point(6, 48);
+            this.ctlInterpolate.Location = new System.Drawing.Point(7, 48);
             this.ctlInterpolate.Name = "ctlInterpolate";
             this.ctlInterpolate.Size = new System.Drawing.Size(175, 23);
             this.ctlInterpolate.TabIndex = 0;
-            this.ctlInterpolate.Text = "Interpolate";
+            this.ctlInterpolate.Text = "IDW Interpolation";
             this.ctlInterpolate.UseVisualStyleBackColor = true;
             this.ctlInterpolate.Click += new System.EventHandler(this.ctlInterpolate_Click);
             // 
-            // ctlData
+            // ctlTabs
             // 
-            this.ctlData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ctlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlData.Location = new System.Drawing.Point(0, 0);
-            this.ctlData.Name = "ctlData";
-            this.ctlData.Size = new System.Drawing.Size(456, 334);
-            this.ctlData.TabIndex = 4;
+            this.ctlTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctlTabs.Location = new System.Drawing.Point(0, 0);
+            this.ctlTabs.Name = "ctlTabs";
+            this.ctlTabs.SelectedIndex = 0;
+            this.ctlTabs.Size = new System.Drawing.Size(452, 334);
+            this.ctlTabs.TabIndex = 4;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 334);
-            this.Controls.Add(this.ctlData);
+            this.Controls.Add(this.ctlTabs);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ctlData)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button ctlLoader;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button ctlInterpolate;
-        private System.Windows.Forms.DataGridView ctlData;
+        private System.Windows.Forms.TabControl ctlTabs;
+        private System.Windows.Forms.Button button1;
     }
 }
 

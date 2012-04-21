@@ -1,5 +1,5 @@
+C:\Projects\GIS\GISProcessing\obj\Debug\ResolveAssemblyReference.cache
 C:\Projects\GIS\GISProcessing\bin\Debug\GISProcessing.dll
 C:\Projects\GIS\GISProcessing\bin\Debug\GISProcessing.pdb
-C:\Projects\GIS\GISProcessing\obj\Debug\ResolveAssemblyReference.cache
 C:\Projects\GIS\GISProcessing\obj\Debug\GISProcessing.dll
 C:\Projects\GIS\GISProcessing\obj\Debug\GISProcessing.pdb

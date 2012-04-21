@@ -1,4 +1,7 @@
 C:\Projects\GIS\UI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Projects\GIS\UI\obj\x86\Debug\UI.InterpolatorForm.resources
+C:\Projects\GIS\UI\obj\x86\Debug\UI.LoadForm.resources
+C:\Projects\GIS\UI\obj\x86\Debug\UI.MainForm.resources
 C:\Projects\GIS\UI\obj\x86\Debug\UI.Properties.Resources.resources
 C:\Projects\GIS\UI\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Projects\GIS\UI\obj\x86\Debug\GenerateResource.write.1.tlog
@@ -8,6 +11,3 @@ C:\Projects\GIS\UI\bin\Debug\GISProcessing.dll
 C:\Projects\GIS\UI\bin\Debug\GISProcessing.pdb
 C:\Projects\GIS\UI\obj\x86\Debug\UI.exe
 C:\Projects\GIS\UI\obj\x86\Debug\UI.pdb
-C:\Projects\GIS\UI\obj\x86\Debug\UI.LoadForm.resources
-C:\Projects\GIS\UI\obj\x86\Debug\UI.MainForm.resources
-C:\Projects\GIS\UI\obj\x86\Debug\UI.InterpolatorForm.resources

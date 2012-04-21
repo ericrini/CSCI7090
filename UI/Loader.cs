@@ -24,7 +24,15 @@ namespace UI
         private void lblFilePath_Load(object sender, EventArgs e)
         {
             // Time Domains
-            ctlDomain.DataSource = Enum.GetValues(typeof(Time.TimeDomain));
+            List<ITimeDomain> timeDomains = new List<ITimeDomain>();
+            timeDomains.Add(new NoTimeDomain());
+            timeDomains.Add(new YearTimeDomain());
+            timeDomains.Add(new QuarterTimeDomain());
+            timeDomains.Add(new MonthTimeDomain());
+            timeDomains.Add(new DayTimeDomain());
+
+            ctlDomain.DataSource = timeDomains;
+            ctlDomain.DisplayMember = "Name";
             ctlDomain.SelectedIndex = 0;
         }
 
@@ -50,30 +58,32 @@ namespace UI
 
         private void ctlBegin_Click(object sender, EventArgs e)
         {
+            // Get an array of selected columns.
+            Loader.Columns[] cols = new Loader.Columns[ctlColSelected.Items.Count];
+            for (int i = 0; i < ctlColSelected.Items.Count; i++)
+            {
+                cols[i] = (Loader.Columns)ctlColSelected.Items[i];
+            }
+
+            // Instantiate loader.
+            this.Loader = new Loader(
+                lblPath.Text,
+                ctlDelimiter.Text,
+                cols,
+                (ITimeDomain)ctlDomain.SelectedItem,
+                int.Parse(ctlSkip.Text)
+            );
+
             try
             {
-                // Get an array of selected columns.
-                Loader.Columns[] cols = new Loader.Columns[ctlColSelected.Items.Count];
-                for (int i = 0; i < ctlColSelected.Items.Count; i++)
-                {
-                    cols[i] = (Loader.Columns)ctlColSelected.Items[i];
-                }
-
-                // Instantiate loader.
-                this.Loader = new Loader(
-                    lblPath.Text,
-                    ctlDelimiter.Text,
-                    cols,
-                    (Time.TimeDomain)ctlDomain.SelectedIndex,
-                    int.Parse(ctlSkip.Text)
-                );
-
-                // Close this dialog.
-                this.Close();
+                this.Loader.Parse(); // Start the routine.
+                this.Close(); // Close this dialog.
             }
             catch (Exception x)
             {
-                MessageBox.Show(x.Message);
+                MessageBox.Show(
+                    "Error Line: " + Loader.CurrentLine + 
+                    "\nMessage:" + x.Message);
             }
         }
 

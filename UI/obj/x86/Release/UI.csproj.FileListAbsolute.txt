@@ -1,0 +1,13 @@
+C:\Projects\GIS\UI\bin\Release\UI.exe
+C:\Projects\GIS\UI\bin\Release\UI.pdb
+C:\Projects\GIS\UI\bin\Release\GISProcessing.dll
+C:\Projects\GIS\UI\bin\Release\GISProcessing.pdb
+C:\Projects\GIS\UI\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Projects\GIS\UI\obj\x86\Release\UI.InterpolatorForm.resources
+C:\Projects\GIS\UI\obj\x86\Release\UI.LoadForm.resources
+C:\Projects\GIS\UI\obj\x86\Release\UI.MainForm.resources
+C:\Projects\GIS\UI\obj\x86\Release\UI.Properties.Resources.resources
+C:\Projects\GIS\UI\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Projects\GIS\UI\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Projects\GIS\UI\obj\x86\Release\UI.exe
+C:\Projects\GIS\UI\obj\x86\Release\UI.pdb

@@ -10,25 +10,33 @@ namespace GISProcessing
         private StreamReader sr;
         private string delimiter;
         private Columns[] columns;
-        private Time.TimeDomain domain;
+        private ITimeDomain timeDomain;
         private int skip;
+        private string file;
 
         public List<Measurement> Data;
+        public string Name;
         public enum Columns { ID = 1, X = 2, Y = 3, Value = 4, Year = 5, Quarter = 6, Month = 7, Day = 8 }
-        
+        public int CurrentLine;
 
-        public Loader(string file, string delimiter, Columns[] columns, Time.TimeDomain domain, int skip)
+        public Loader(string file, string delimiter, Columns[] columns, ITimeDomain timeDomain, int skip)
         {
             // Populate fields.
+            this.CurrentLine = 1;
+            this.Name = new FileInfo(file).Name;
             this.Data = new List<Measurement>();
             this.columns = columns;
             this.delimiter = "\t";
-            this.domain = domain;
+            this.timeDomain = timeDomain;
             this.skip = skip;
-            
+            this.file = file;
+        }
+
+        public void Parse()
+        {
             // Loop through the file and parse each value into memory.
             int skipped = 0;
-            this.sr = new StreamReader(File.OpenRead(file));
+            this.sr = new StreamReader(File.OpenRead(this.file));
             while (sr.Peek() > -1)
             {
                 string text = sr.ReadLine();
@@ -40,6 +48,7 @@ namespace GISProcessing
                 {
                     skipped++;
                 }
+                this.CurrentLine++;
             }
             sr.Close();
         }
@@ -50,13 +59,14 @@ namespace GISProcessing
             string[] tokens = text.Split(new string[] {this.delimiter}, StringSplitOptions.RemoveEmptyEntries);
 
             // Populate the measurement.
-            Measurement measurement = new Measurement(new Time(domain));
+            Measurement measurement = new Measurement();
+            measurement.Time = (ITimeDomain)Activator.CreateInstance(this.timeDomain.GetType());
             for (int i = 0; i < tokens.Length; i++)
             {
                 switch (this.columns[i])
                 {
                     case Columns.ID:
-                        measurement.ID = int.Parse(tokens[i]);
+                        measurement.ID = long.Parse(tokens[i]);
                         break;
                     case Columns.X:
                         measurement.X = float.Parse(tokens[i]);
@@ -68,19 +78,20 @@ namespace GISProcessing
                         measurement.Value = float.Parse(tokens[i]);
                         break;
                     case Columns.Year:
-                        measurement.Time.Value[0] = int.Parse(tokens[i]);
+                        measurement.Time.SetProperty("year", int.Parse(tokens[i]));
                         break;
                     case Columns.Quarter:
-                        measurement.Time.Value[1] = int.Parse(tokens[i]);
+                        measurement.Time.SetProperty("quarter", int.Parse(tokens[i]));
                         break;
                     case Columns.Month:
-                        measurement.Time.Value[1] = int.Parse(tokens[i]);
+                        measurement.Time.SetProperty("month", int.Parse(tokens[i]));
                         break;
                     case Columns.Day:
-                        measurement.Time.Value[2] = int.Parse(tokens[i]);
+                        measurement.Time.SetProperty("day", int.Parse(tokens[i]));
                         break;
                 }
             }
+
             return measurement;
         }
     }

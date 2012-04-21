@@ -40,9 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interpolator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Loader.cs" />
+    <Compile Include="Models\DayTimeDomain.cs" />
+    <Compile Include="Models\ITimeDomain.cs" />
     <Compile Include="Models\Measurement.cs" />
-    <Compile Include="Models\Time.cs" />
+    <Compile Include="Models\MonthTimeDomain.cs" />
+    <Compile Include="Models\NoTimeDomain.cs" />
+    <Compile Include="Models\QuarterTimeDomain.cs" />
+    <Compile Include="Models\YearTimeDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
