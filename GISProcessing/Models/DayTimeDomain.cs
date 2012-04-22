@@ -7,7 +7,7 @@ namespace GISProcessing.Models
 {
     public class DayTimeDomain: ITimeDomain
     {
-        private int year = 2000;
+        private int year = 1;
         private int month = 1;
         private int day = 1;
 
@@ -27,13 +27,12 @@ namespace GISProcessing.Models
             }
         }
 
+        private double tVal;
         public double TVal
         {
             get
             {
-                DateTime firstOfYear = new DateTime(this.year, 1, 1);
-                TimeSpan ts = this.DateTime.Subtract(firstOfYear);
-                return ts.TotalDays;
+                return this.tVal;
             }
         }
 
@@ -52,6 +51,7 @@ namespace GISProcessing.Models
             this.year = current.Year;
             this.month = current.Month;
             this.day = current.Day;
+            this.tVal++;
         }
 
 
@@ -73,15 +73,28 @@ namespace GISProcessing.Models
             {
                 throw new Exception("The property: " + property + " is invalid for this TimeDomain.");
             }
+            this.recaluclate();
         }
 
         public void SetT(double value)
         {
             DateTime t = new DateTime(this.year, 1, 1);
-            t = t.AddDays(value - 1);
+            t = t.AddDays(value);
             this.year = t.Year;
             this.month = t.Month;
             this.day = t.Day;
+            this.recaluclate();
+        }
+
+        /// <summary>
+        /// Profiler says this is expensive operation so we need to minimize it to only 
+        /// occur when it is needed not every time get TVal is called.
+        /// </summary>
+        private void recaluclate()
+        {
+            DateTime firstOfYear = new DateTime(this.year, 1, 1);
+            TimeSpan ts = this.DateTime.Subtract(firstOfYear);
+            this.tVal = ts.TotalDays + 1;
         }
     }
 }

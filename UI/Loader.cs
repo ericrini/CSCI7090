@@ -39,6 +39,8 @@ namespace UI
         private void ctlPath_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.DefaultExt = "txt";
+            ofd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
             ofd.ShowDialog();
             if (ofd.FileName != null)
             {

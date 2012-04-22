@@ -45,6 +45,7 @@
     </Compile>
     <Compile Include="Loader.cs" />
     <Compile Include="Models\DayTimeDomain.cs" />
+    <Compile Include="Exporter.cs" />
     <Compile Include="Models\ITimeDomain.cs" />
     <Compile Include="Models\Measurement.cs" />
     <Compile Include="Models\MonthTimeDomain.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Models\QuarterTimeDomain.cs" />
     <Compile Include="Models\YearTimeDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />

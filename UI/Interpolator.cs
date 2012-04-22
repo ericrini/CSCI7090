@@ -33,8 +33,8 @@ namespace UI
                 ctlKnown.Items.Add(data.Name);
                 ctlMissing.Items.Add(data.Name);
             }
-            ctlKnown.SelectedItem = 0;
-            ctlMissing.SelectedItem = 0;
+            ctlKnown.SelectedItem = ctlKnown.Items[0];
+            ctlMissing.SelectedItem = ctlMissing.Items[0];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,6 +42,7 @@ namespace UI
             // Get interpolation parameters.
             int n = (int)ctlN.Value;
             double p = (double)ctlP.Value;
+            double timeCoefficient = (double)cltCoefficient.Value;
 
             // Get the known and missing data sets.
             List<Measurement> known = new List<Measurement>();
@@ -64,7 +65,7 @@ namespace UI
             ctlProgress.Maximum = (int)(missing.Count * known[0].Time.TMax);
 
             // Begin the calculation in a new thread.
-            this.i = new Interpolator(known, missing, n, p);
+            this.i = new Interpolator(known, missing, n, p, timeCoefficient);
             Thread t = new Thread(delegate()
                 {
                     // Run algorithm.
@@ -79,6 +80,7 @@ namespace UI
 
         private void ctlTimer_Tick(object sender, EventArgs e)
         {
+            lblProgress.Text = this.i.Current + " of " + this.i.Max;
             this.ctlProgress.Value = this.i.Current;
             if (this.i.Current == this.i.Max)
             {

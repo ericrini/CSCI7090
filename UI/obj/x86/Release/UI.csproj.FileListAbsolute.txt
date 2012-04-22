@@ -11,3 +11,4 @@ C:\Projects\GIS\UI\obj\x86\Release\GenerateResource.read.1.tlog
 C:\Projects\GIS\UI\obj\x86\Release\GenerateResource.write.1.tlog
 C:\Projects\GIS\UI\obj\x86\Release\UI.exe
 C:\Projects\GIS\UI\obj\x86\Release\UI.pdb
+C:\Projects\GIS\UI\obj\x86\Release\UI.ExportForm.resources

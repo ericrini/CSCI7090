@@ -22,7 +22,12 @@ namespace UI
             this.DataSets = new List<TabData>();
         }
 
-        private void ctlLoader_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadForm loader = new LoadForm();
             loader.ShowDialog();
@@ -32,7 +37,13 @@ namespace UI
             }
         }
 
-        private void ctlInterpolate_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportForm frmExporter = new ExportForm();
+            frmExporter.Show();
+        }
+
+        private void iDWInterpolationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InterpolatorForm interpolator = new InterpolatorForm();
             interpolator.ShowDialog();
@@ -58,19 +69,20 @@ namespace UI
                 r["X"] = data[i].X;
                 r["Y"] = data[i].Y;
                 r["Value"] = data[i].Value;
-                try
+                if (data[i].Time.Name != "None")
                 {
                     r["Time"] = data[i].Time.DateTime.ToString("d");
                 }
-                catch (Exception e)
+                else
                 {
-                    r["Time"] = "n/a";
+                    r["Time"] = "No Time Domain";
                 }
                 t.Rows.Add(r);
             }
 
             // Greate a grid.
             DataGridView grid = new DataGridView();
+            grid.VirtualMode = true;
             grid.Dock = DockStyle.Fill;
             grid.DataSource = t;
 

@@ -11,3 +11,4 @@ C:\Projects\GIS\UI\bin\Debug\GISProcessing.dll
 C:\Projects\GIS\UI\bin\Debug\GISProcessing.pdb
 C:\Projects\GIS\UI\obj\x86\Debug\UI.exe
 C:\Projects\GIS\UI\obj\x86\Debug\UI.pdb
+C:\Projects\GIS\UI\obj\x86\Debug\UI.ExportForm.resources

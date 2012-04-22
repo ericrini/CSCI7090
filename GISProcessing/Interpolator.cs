@@ -13,12 +13,15 @@ namespace GISProcessing
         public double Max;
         public int Current;
 
-        private List<Measurement> known;
-        private List<Measurement> missing;
-        private int nearest;
-        private double exponent;
+        private List<Measurement> known; // List of known points (with time domain and value initialized).
+        private List<Measurement> missing; // List of unknown points (time domain will be replaced by time domain of known data set).
+        private int nearest; // The n (and k values).
+        private double exponent; // The p value.
+        private double timeCoefficient; // Multiplies by all t values... allowing to investigate encoding as intever vs decimal. 
+                                        // For example if a time domain has a range 1 - 365 and the t value is 32 and 
+                                        // the time coefficient is 0.1 then the t value will represent as 3.2 on a scale of 0.01 to 3.65.
 
-        public Interpolator(List<Measurement> known, List<Measurement> missing, int nearest, double exponent)
+        public Interpolator(List<Measurement> known, List<Measurement> missing, int nearest, double exponent, double timeCoefficient)
         {
             this.Max = missing.Count * known[0].Time.TMax;
             this.Current = 0;
@@ -26,6 +29,7 @@ namespace GISProcessing
             this.missing = missing;
             this.nearest = nearest;
             this.exponent = exponent;
+            this.timeCoefficient = timeCoefficient;
         }
 
         public List<Measurement> GetResults()
@@ -54,15 +58,15 @@ namespace GISProcessing
 
             // This is the time domain of the KNOWN values.
             // We are trying to calculate every unknown element for every value bewteen t=0 and tmax of this time domain.
-            // We initialize it to the first period of the year of the first known element.
             ITimeDomain t = (ITimeDomain)Activator.CreateInstance(this.known[0].Time.GetType());
-            t.SetT(1);
+            t.SetProperty("year", this.known[0].Time.DateTime.Year); // Set the year to the year of the first known item. 
+                                                                     // No example data sets span multiple years. This is kindof undefined behavior.
 
             // Iterate over all t values in this time domain.
             for (int i = 0; i < t.TMax; i++)
             {
-                currMissing.Time = t; // Copy the current time value onto missing (the missing values have no time domain - we need to add one based off the know values).
-                List<Measurement> nearest = this.calcNearest(currMissing); // Get the n nearest known values. This is a massive performance hit...
+                currMissing.Time = t; // Use the known time domain as the time domain of the missing data set.
+                List<Measurement> nearest = this.calcNearest(currMissing); // Get the n nearest known values.
 
                 // Iterate over the nearset known values and sum up their lambdas.
                 double sum = 0.0d;
@@ -82,16 +86,19 @@ namespace GISProcessing
                 output.Y = currMissing.Y;
                 output.Time = (ITimeDomain)Activator.CreateInstance(this.known[0].Time.GetType());
                 output.Time.SetT(t.TVal);
+                output.Time.SetProperty("year", t.DateTime.Year);
                 output.Value = (float)sum;
                 results.Add(output); // We now store this model in a new list.
 
                 t.IncrementT(); // Increment the time domain value.
-                this.Current++;
+                this.Current++; // Report row increment... this is how the progressbar knows.
             }
         }
 
         /// <summary>
         /// HELPER: Finds disatances... used to find di (and dk) values.
+        /// 
+        /// NOTE: This is currently the least optimized function according to the profiler... I wonder if theres a better 3rd party math library for .NET?
         /// </summary>
         /// <returns></returns>
         private double calcD(Measurement nearest, Measurement missing)
@@ -99,38 +106,71 @@ namespace GISProcessing
             return Math.Sqrt(
                 Math.Pow(nearest.X - missing.X, 2) +
                 Math.Pow(nearest.Y - missing.Y, 2) +
-                Math.Pow(nearest.Time.TVal - missing.Time.TVal, 2)
+
+                // Notice the TVal is multipled by a scale factor... to allow us control over the range.
+                // IE 1-365 or 0.01 - 3.65.
+                Math.Pow(this.timeCoefficient * nearest.Time.TVal - this.timeCoefficient * missing.Time.TVal, 2)
             );
         }
 
         /// <summary>
-        /// Finds the n known measurements with the smallest euclidian distance to x, y.
+        /// Finds the n known measurements with the smallest euclidian distance to x, y, t in nearly O(n) time.
         /// </summary>
         private List<Measurement> calcNearest(Measurement measure)
         {
-            // Create a better data structure for this.
-            List<DistanceMeasurement> measures = new List<DistanceMeasurement>();
+            DistanceMeasurement[] results = new DistanceMeasurement[this.nearest];
             foreach (Measurement curr in this.known)
             {
-                DistanceMeasurement dm = new DistanceMeasurement();
-                dm.Measurement = curr;
-                measures.Add(dm);
+                double distance = this.calcD(curr, measure);
+
+                // Test if this is a new smallest value.
+                bool shift = false;
+                DistanceMeasurement shifted = null;
+                for (int i = 0; i < results.Length; i++)
+                {
+                    // A smaller value was found continue shifting the array.
+                    if (shift)
+                    {
+                        DistanceMeasurement temp = results[i];
+                        results[i] = shifted;
+                        shifted = temp;
+                    }
+                    // Test if this is one of the first n elements.
+                    else if (results[i] == null)
+                    {
+                        // Build a DistanceMeasurement for this value.
+                        DistanceMeasurement dm = new DistanceMeasurement();
+                        dm.Measurement = curr;
+                        dm.Distance = distance;
+
+                        results[i] = dm;
+                    }
+                    // Test if value smaller than current element.
+                    else if (distance < results[i].Distance)
+                    {
+                        // Build a DistanceMeasurement for this value.
+                        DistanceMeasurement dm = new DistanceMeasurement();
+                        dm.Measurement = curr;
+                        dm.Distance = distance;
+
+                        // Swap in this value.
+                        shifted = results[i];
+                        results[i] = dm;
+
+                        // Enter shift mode.
+                        shift = true;
+                    }
+                }
             }
 
-            // Calculate the euclidian distance from measure for each known point.
-            foreach (DistanceMeasurement curr in measures)
+            // Convert from DistanceMeasurement to Measurement.
+            List<Measurement> nearest = new List<Measurement>();
+            foreach (DistanceMeasurement curr in results)
             {
-                curr.Distance = this.calcD(curr.Measurement, measure);
+                nearest.Add(curr.Measurement);
             }
-            measures.Sort(); // Sort the array from smallest to largest using IComparable logic below.
-            
-            // Return the top n Measurements
-            List<Measurement> result = new List<Measurement>();
-            foreach (DistanceMeasurement curr in measures.Take(this.nearest))
-            {
-                result.Add(curr.Measurement);
-            }
-            return result; 
+
+            return nearest; 
         }
 
         /// <summary>
